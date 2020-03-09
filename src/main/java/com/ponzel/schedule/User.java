@@ -1,23 +1,18 @@
 package com.ponzel.schedule;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
 @Data
-@RequiredArgsConstructor
+@Table(name = "usr")
 public class User implements UserDetails {
-    private static final long  serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,10 +22,26 @@ public class User implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
+    private String email;
+    private String phoneNumber;
+    private boolean isAdmin;
+
+    public User() {
+    }
+
+    public User(String username, String password, String firstName, String lastName, String email, String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return  Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
