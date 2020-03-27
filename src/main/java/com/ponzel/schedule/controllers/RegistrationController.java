@@ -16,7 +16,6 @@ public class RegistrationController {
     private UserRepository userRepo;
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
     public RegistrationController(UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;

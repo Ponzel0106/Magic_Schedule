@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,12 +19,17 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "user")
+    private List<Schedule> schedules;
+
 
     public User() {
     }
