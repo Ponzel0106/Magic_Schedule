@@ -44,6 +44,9 @@ public class User implements UserDetails {
 
     }
 
+    public String getFirstAndLastName(){
+        return firstName + " " + lastName;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return  Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));

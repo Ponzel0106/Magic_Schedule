@@ -16,29 +16,26 @@
           crossorigin="anonymous">
 </head>
 <body>
-<form method="POST" th:action="@{/schedule/list }">
+<form method="POST" th:action="@{/schedule/shift/update/{id}(id = ${shift.id})}">
     <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="month">Select Month in which you want to se your Schedule</label>
-            <select class="custom-select mr-sm-2" name="month" id="month" >
 
-                <option selected value="JANUARY">January</option>
-                <option value="FEBRUARY">February</option>
-                <option value="MARCH">March</option>
-                <option value="APRIL">April</option>
-                <option value="MAY">May</option>
-                <option value="JUNE">June</option>
-                <option value="JULY">July</option>
-                <option value="AUGUST">August</option>
-                <option value="SEPTEMBER">September</option>
-                <option value="OCTOBER">October</option>
-                <option value="NOVEMBER">November</option>
-                <option value="DECEMBER">December</option>
+        <div class="col-auto my-1">
+            <label th:text="${shift.getDay()}"/>
+            <label th:text="${shift.getType()}"/>
+        </div>
+
+        <div class="col-auto my-1">
+            <label class="mr-sm-2" for="type">Select new type of shift</label>
+            <select class="custom-select mr-sm-2"  name="type" id="type" >
+                <option selected value="SUPER_EARLY">SUPER_EARLY</option>
+                <option value="EARLY">EARLY</option>
+                <option value="LATE">LATE</option>
+                <option value="DAY_OFF">DAY_OFF</option>
             </select>
         </div>
 
         <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </div>
 </form>

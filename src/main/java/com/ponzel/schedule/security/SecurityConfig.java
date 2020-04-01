@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.hibernate.criterion.Restrictions.and;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -32,23 +30,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(encode());
-
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/home")
+                    .antMatchers("/start")
                         .access("hasRole('ROLE_USER')")
                     .antMatchers("/").access("permitAll")
                 .and()
                     .formLogin()
                         .loginPage("/login")
+                        .defaultSuccessUrl("/start")
                 .and()
                     .logout()
                     .logoutSuccessUrl("/login")
                 ;
-
     }
 }

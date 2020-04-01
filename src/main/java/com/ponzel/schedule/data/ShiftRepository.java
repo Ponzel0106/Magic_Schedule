@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShiftRepository extends CrudRepository<Shift, Long> {
-    Shift findAllBySchedule(Schedule schedule);
+    Iterable<Shift> findAllBySchedule(Schedule schedule);
 }
