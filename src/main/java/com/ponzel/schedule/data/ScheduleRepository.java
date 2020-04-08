@@ -7,5 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
+    Iterable<Schedule> findAllByUser(User user);
+    Iterable<Schedule> findAllByMonth(String month);
     Schedule findByUserAndMonth(User user, String month);
+
+
 }

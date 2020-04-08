@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Start Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-          crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Start Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+              integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+              crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+    </head>
+    <body>
 
-        <form method="POST" th:action="@{/logout}">
-            <input type="submit" class="btn btn-primary" value="Logout"/>
-        </form>
 
-        <div>
-            <h1>Hello, </h1>
-            <h1 th:text="${name}"></h1>
-        </div>
-        <h1>Welcome to Magic Schedule</h1>
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <label class="navbar-brand">Magic Schedule</label>
 
-        <form method="GET" th:action="@{/schedule/list}">
-        <button type="submit" class="btn btn-success btn-lg btn-block">  My Schedule </button>
-        </form>
-
-</body>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/list">My schedule </a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout">Logout</button>
+                </form>
+            </div>
+        </nav>
+            <div>
+                <h1>Hello, </h1>
+                <h1 th:text="${name}"></h1>
+            </div>
+            <h1>Welcome to Magic Schedule</h1>
+    </body>
 </html>

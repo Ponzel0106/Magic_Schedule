@@ -14,12 +14,7 @@ public class StartController {
     @GetMapping()
     public String showUsersStartPAge(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("name", user.getFirstAndLastName());
-        return "startUsersPage";
+        return user.isAdmin()? "startAdminsPage" : "startUsersPage";
     }
 
-    @GetMapping("/admin")
-    public String showAdminsStartPage(@AuthenticationPrincipal User user, Model model){
-        model.addAttribute("name", user.getFirstAndLastName());
-        return "startAdminsPage";
-    }
 }

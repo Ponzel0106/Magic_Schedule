@@ -1,46 +1,75 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Schedule</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-          crossorigin="anonymous">
-</head>
-<body>
-<form method="POST" th:action="@{/schedule}">
-    <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="month">Select Month</label>
-            <select class="custom-select mr-sm-2" name="month" id="month" >
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Schedule</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+              integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <label class="navbar-brand">Magic Schedule</label>
 
-                <option selected value="JANUARY">January</option>
-                <option value="FEBRUARY">February</option>
-                <option value="MARCH">March</option>
-                <option value="APRIL">April</option>
-                <option value="MAY">May</option>
-                <option value="JUNE">June</option>
-                <option value="JULY">July</option>
-                <option value="AUGUST">August</option>
-                <option value="SEPTEMBER">September</option>
-                <option value="OCTOBER">October</option>
-                <option value="NOVEMBER">November</option>
-                <option value="DECEMBER">December</option>
-            </select>
-        </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-        <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
-</form>
-</body>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule">Create </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/search">Select </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users </a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout">Logout</button>
+                </form>
+            </div>
+        </nav>
+
+
+        <form method="POST" th:action="@{/schedule}">
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="month">Select Month</label>
+                    <select class="custom-select mr-sm-2" name="month" id="month" >
+
+                        <option selected value="JANUARY">January</option>
+                        <option value="FEBRUARY">February</option>
+                        <option value="MARCH">March</option>
+                        <option value="APRIL">April</option>
+                        <option value="MAY">May</option>
+                        <option value="JUNE">June</option>
+                        <option value="JULY">July</option>
+                        <option value="AUGUST">August</option>
+                        <option value="SEPTEMBER">September</option>
+                        <option value="OCTOBER">October</option>
+                        <option value="NOVEMBER">November</option>
+                        <option value="DECEMBER">December</option>
+                    </select>
+                </div>
+
+                <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </body>
 </html>

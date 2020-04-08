@@ -34,7 +34,8 @@ public class ScheduleController {
     public String selectMonth(){ return "selectMonthForCreateSchedules";}
     @PostMapping()
     public String createSchedule(String month){
-       Iterable<User> users = userRepo.findAll();
+        if(scheduleRepo.findAllByMonth(month) != null) return "scheduleIsAlreadyExists";
+        Iterable<User> users = userRepo.findAllByRole(User.RoleOfUser.ROLE_USER);
         for (User user : users) {
             Schedule schedule = new Schedule();
             schedule.setMonth(month);
@@ -66,7 +67,7 @@ public class ScheduleController {
 
     @GetMapping("/search")
     public String selectUserAndMonthForScheduleList(Model model) {
-        model.addAttribute("users", userRepo.findAll());
+        model.addAttribute("users", userRepo.findAllByRole(User.RoleOfUser.ROLE_USER));
         return "selectUserAndMonthForScheduleList";
     }
     @PostMapping("/search")
@@ -78,7 +79,6 @@ public class ScheduleController {
         model.addAttribute("shifts", shiftRepo.findAllBySchedule(schedule));
         return "shiftsInScheduleForAdmin";
     }
-
    @GetMapping("/shift/update/{id}")
     public String selectNewShiftType(@PathVariable("id") long id, Model model){
         Shift shift = shiftRepo.findById(id)
