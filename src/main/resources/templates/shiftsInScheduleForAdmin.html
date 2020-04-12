@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Shifts</title>
+        <title>Schedule</title>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="/frontend/shiftsInScheduleForAdmin/images/icons/favicon.ico"/>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/frontend/shiftsInScheduleForAdmin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/frontend/shiftsInScheduleForAdmin/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/frontend/shiftsInScheduleForAdmin/css/main.css">
+        <!--===============================================================================================-->
         <link rel="stylesheet"
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -13,7 +20,15 @@
               href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
               integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
               crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+        <!--===============================================================================================-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+        <link rel="stylesheet" href="dist/css/bootstrap-navbar-dropdowns.css">
+        <!--===============================================================================================-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js" defer></script>
+        <script src="dist/js/bootstrap-navbar-dropdowns.js" defer></script>
+        <!--===============================================================================================-->
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -21,12 +36,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <label class="navbar-brand">Magic Schedule</label>
-
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/schedule">Create </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/schedule">For All</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/schedule/user">For one User</a>
+                        </div>
                     </li>
 
                     <li class="nav-item">
@@ -34,51 +54,57 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/users">Users </a>
+                        <a class="nav-link" href="/schedule/update">Update </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/delete">Delete </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users </a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout">Logout</button>
                 </form>
             </div>
         </nav>
-
-        <div class="container my-2">
-            <div class="card">
-                <div class="card-body">
-                    <div th:switch="${shifts}" class="container my-5">
+        <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div th:switch="${shifts}" >
                         <div class="col-md-10">
                             <div th:case="*">
                                 <h1>Schedule </h1>
                                 <h2 th:text="${name}"></h2>
                                 <h2 th:text="${month}"></h2>
-
-                                <table class="table table-striped table-responsive-md">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th>Day</th>
-                                        <th>Type</th>
-                                        <th>Edit</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="shift : ${shifts}">
-                                        <td th:text="${shift.day}"></td>
-                                        <td th:text="${shift.type}"></td>
-                                        <td><a
-                                                th:href="@{/schedule/shift/update/{id}(id = ${shift.id})}"
-                                                class="btn btn-primary"><i class="fas fa-wrench"></i></a></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
                             </div>
-
                         </div>
+                    </div>
+                    <div class="table100">
+                        <table>
+                            <thead>
+                            <tr class="table100-head">
+                                <th class="column1">Day</th>
+                                <th class="column2">Type</th>
+                                <th class="column3">Edit</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="shift : ${shifts}">
+                                <td class="column1" th:text="${shift.day}"></td>
+                                <td class="column2" th:text="${shift.type}"></td>
+                                <td class="column3"><a
+                                        th:href="@{/schedule/shift/update/{id}(id = ${shift.id})}"
+                                        class="btn btn-primary"><i class="fas fa-wrench"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-
 </html>

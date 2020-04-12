@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Select user and month for schedule</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="/frontend/selectUserAndMonthForCreateSchedule/images/icons/favicon.ico"/>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/frontend/selectUserAndMonthForCreateSchedule/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/frontend/selectUserAndMonthForCreateSchedule/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/frontend/selectUserAndMonthForCreateSchedule/css/main.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+              integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+              crossorigin="anonymous">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+        <link rel="stylesheet" href="dist/css/bootstrap-navbar-dropdowns.css">
+        <!--===============================================================================================-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js" defer></script>
+        <script src="dist/js/bootstrap-navbar-dropdowns.js" defer></script>
+        <!--===============================================================================================-->
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <label class="navbar-brand">Magic Schedule</label>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/schedule">For All</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/schedule/user">For one User</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/search">Select </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/update">Update </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/delete">Delete </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users </a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100">
+                        <table>
+                            <thead>
+                            <tr class="table100-head">
+                                <th class="column1">Select user and month for create schedule</th>
+                                <th class="column2>"></th>
+                                <th class="column3>"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <form method="POST" th:action="@{/schedule/user}">
+                                    <td class="column1">
+                                        <select class="custom-select" name="username" id="username">
+                                            <option th:each="user : ${users}" th:text="${user.getFirstAndLastName()}" th:value="${user.username}"></option>
+                                        </select>
+                                    </td>
+                                    <td class="column2">
+                                        <select class="custom-select mr-sm-2" name="month" id="month" >
+                                            <option selected value="JANUARY">January</option>
+                                            <option value="FEBRUARY">February</option>
+                                            <option value="MARCH">March</option>
+                                            <option value="APRIL">April</option>
+                                            <option value="MAY">May</option>
+                                            <option value="JUNE">June</option>
+                                            <option value="JULY">July</option>
+                                            <option value="AUGUST">August</option>
+                                            <option value="SEPTEMBER">September</option>
+                                            <option value="OCTOBER">October</option>
+                                            <option value="NOVEMBER">November</option>
+                                            <option value="DECEMBER">December</option>
+                                        </select>
+                                    </td>
+                                    <td class="column3"><button type="submit" class="btn btn-primary">Create</button>
+                                    </td>
+                                </form>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

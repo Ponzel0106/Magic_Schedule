@@ -14,6 +14,14 @@
               integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
               crossorigin="anonymous">
         <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+        <link rel="stylesheet" href="dist/css/bootstrap-navbar-dropdowns.css">
+        <!--===============================================================================================-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js" defer></script>
+        <script src="dist/js/bootstrap-navbar-dropdowns.js" defer></script>
+        <!--===============================================================================================-->
     </head>
     <body>
 
@@ -22,12 +30,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <label class="navbar-brand">Magic Schedule</label>
-
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/schedule">Create </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/schedule">For All</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/schedule/user">For one User</a>
+                        </div>
                     </li>
 
                     <li class="nav-item">
@@ -35,9 +48,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/users">Users </a>
+                        <a class="nav-link" href="/schedule/update">Update </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule/delete">Delete </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users </a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout">Logout</button>

@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/schedule")
@@ -33,24 +34,46 @@ public class ScheduleController {
     @GetMapping()
     public String selectMonth(){ return "selectMonthForCreateSchedules";}
     @PostMapping()
-    public String createSchedule(String month){
-        if(scheduleRepo.findAllByMonth(month) != null) return "scheduleIsAlreadyExists";
+    public String createScheduleForAll(String month){
         Iterable<User> users = userRepo.findAllByRole(User.RoleOfUser.ROLE_USER);
         for (User user : users) {
-            Schedule schedule = new Schedule();
-            schedule.setMonth(month);
-            schedule.setUser(user);
-            scheduleRepo.save(schedule);
-
-            for(int i = 1; i <= Month.valueOf(schedule.getMonth()).length(false); i++){
-                Shift shift = new Shift();
-                shift.setDay(i);
-                shift.setSchedule(schedule);
-                shift.setType(Shift.generateTypeOfShift());
-                shiftRepo.save(shift);
-            }
+           createSchedule(user,month);
         }
         return "redirect:/schedule/search";
+    }
+
+    @GetMapping("/user")
+    public String selectUserAndMonthForCreateSchedule(Model model){
+        Iterable<User> allUsers = userRepo.findAllByRole(User.RoleOfUser.ROLE_USER);
+        List<User> newUsers = new ArrayList<>();
+        for(User user : allUsers){
+            if(user.getSchedules().size()==0){
+                newUsers.add(user);
+            }
+        }
+        model.addAttribute("users", newUsers);
+        return "selectUserAndMonthForCreateSchedule";
+    }
+    @PostMapping("/user")
+    public String createScheduleForUser(String username, String month){
+        User user = userRepo.findByUsername(username);
+        createSchedule(user, month);
+        return "redirect:/schedule/search";
+    }
+
+    public void createSchedule(User user, String month){
+        Schedule schedule = new Schedule();
+        schedule.setMonth(month);
+        schedule.setUser(user);
+        scheduleRepo.save(schedule);
+
+        for(int i = 1; i <= Month.valueOf(schedule.getMonth()).length(false); i++){
+            Shift shift = new Shift();
+            shift.setDay(i);
+            shift.setSchedule(schedule);
+            shift.setType(Shift.generateTypeOfShift());
+            shiftRepo.save(shift);
+        }
     }
 
     @GetMapping("/list")
@@ -79,6 +102,7 @@ public class ScheduleController {
         model.addAttribute("shifts", shiftRepo.findAllBySchedule(schedule));
         return "shiftsInScheduleForAdmin";
     }
+
    @GetMapping("/shift/update/{id}")
     public String selectNewShiftType(@PathVariable("id") long id, Model model){
         Shift shift = shiftRepo.findById(id)
@@ -96,8 +120,54 @@ public class ScheduleController {
         model.addAttribute("shifts", shiftRepo.findAllBySchedule(schedule));
         model.addAttribute("month", schedule.getMonth());
         model.addAttribute("name", schedule.getUser().getFirstAndLastName());
-        return"shiftsInScheduleForAdmin";
+        return "shiftsInScheduleForAdmin";
     }
 
+    @GetMapping("/update")
+    public String selectUserAndMonthFotUpdateSchedule(Model model){
+        Iterable<User> allUsers = userRepo.findAllByRole(User.RoleOfUser.ROLE_USER);
+        List<User> usersWithSchedule = new ArrayList<>();
+        for(User user : allUsers){
+            if(user.getSchedules().size()!=0){
+                usersWithSchedule.add(user);
+            }
+        }
+        model.addAttribute("users", usersWithSchedule);
+        return "selectUserAndMonthForUpdateSchedule";
+    }
+    @PostMapping("/update")
+    public String updateSchedule(String username, String month){
+        Schedule schedule = scheduleRepo.findByUserAndMonth(userRepo.findByUsername(username),month);
+        Iterable<Shift> shifts = shiftRepo.findAllBySchedule(schedule);
+        for(Shift shift :  shifts){
+            shift.setType(Shift.generateTypeOfShift());
+            shiftRepo.save(shift);
+        }
+        return "redirect:/schedule/search";
+    }
+
+    @GetMapping("/delete")
+    public String selectUserAndMonthForDeleteSchedule(Model model){
+        Iterable<User> allUsers = userRepo.findAllByRole(User.RoleOfUser.ROLE_USER);
+        List<User> usersWithSchedule = new ArrayList<>();
+        for(User user : allUsers){
+            if(user.getSchedules().size()!=0){
+                usersWithSchedule.add(user);
+            }
+        }
+        model.addAttribute("users", usersWithSchedule);
+        return "selectUserAndMonthForDeleteSchedule";
+    }
+    @PostMapping("/delete")
+    public String deleteSchedule(String username, String month){
+        User user = userRepo.findByUsername(username);
+        Schedule schedule = scheduleRepo.findByUserAndMonth(user,month);
+        Iterable<Shift> shifts = shiftRepo.findAllBySchedule(schedule);
+        for(Shift shift : shifts){
+            shiftRepo.delete(shift);
+        }
+        scheduleRepo.delete(schedule);
+        return"redirect:/start";
+    }
 
 }

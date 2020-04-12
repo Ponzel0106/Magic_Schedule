@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Shifts</title>
+        <title>Schedule</title>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="/frontend/shiftsInSchedule/images/icons/favicon.ico"/>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/frontend/shiftsInSchedule/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/frontend/shiftsInSchedule/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/frontend/shiftsInSchedule/css/main.css">
+        <!--===============================================================================================-->
         <link rel="stylesheet"
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -13,16 +20,14 @@
               href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
               integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
               crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+        <!--===============================================================================================-->
     </head>
     <body>
-
         <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <label class="navbar-brand">Magic Schedule</label>
-
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
@@ -34,34 +39,36 @@
                 </form>
             </div>
         </nav>
-
-        <div class="container my-2">
-            <div class="card">
-                <div class="card-body">
-                    <div th:switch="${shifts}" class="container my-5">
+        <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div th:switch="${shifts}" >
                         <div class="col-md-10">
                             <div th:case="*">
-                                <h1>Your schedule:</h1>
-                                <table class="table table-striped table-responsive-md">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th>Day</th>
-                                        <th>Type</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="shift : ${shifts}">
-                                        <td th:text="${shift.day}"></td>
-                                        <td th:text="${shift.type}"></td>
-                                    </tr>
-                                </table>
+                                <h1>Schedule </h1>
+                                <h2 th:text="${name}"></h2>
+                                <h2 th:text="${month}"></h2>
                             </div>
-
                         </div>
+                    </div>
+                    <div class="table100">
+                        <table>
+                            <thead>
+                            <tr class="table100-head">
+                                <th class="column1">Day</th>
+                                <th class="column2">Type</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="shift : ${shifts}">
+                                <td class="column1" th:text="${shift.day}"></td>
+                                <td class="column2" th:text="${shift.type}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-
 </html>
