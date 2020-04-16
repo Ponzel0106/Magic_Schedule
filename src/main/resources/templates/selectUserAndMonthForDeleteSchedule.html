@@ -84,7 +84,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <form method="POST" th:action="@{/schedule/user}">
+                                <form method="POST" th:action="@{/schedule/delete}">
                                     <td class="column1">
                                         <select class="custom-select" name="username" id="username">
                                             <option th:each="user : ${users}" th:text="${user.getFirstAndLastName()}" th:value="${user.username}"></option>

@@ -1,4 +1,4 @@
-package com.ponzel.schedule.data;
+package com.ponzel.schedule.data.repository;
 
 import com.ponzel.schedule.Schedule;
 import com.ponzel.schedule.Shift;

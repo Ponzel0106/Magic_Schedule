@@ -1,6 +1,6 @@
 package com.ponzel.schedule.controllers;
 
-import com.ponzel.schedule.data.UserRepository;
+import com.ponzel.schedule.data.repository.UserRepository;
 import com.ponzel.schedule.security.RegistrationForm;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;

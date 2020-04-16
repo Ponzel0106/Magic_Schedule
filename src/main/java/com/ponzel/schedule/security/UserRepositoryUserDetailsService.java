@@ -1,7 +1,7 @@
 package com.ponzel.schedule.security;
 
 import com.ponzel.schedule.User;
-import com.ponzel.schedule.data.UserRepository;
+import com.ponzel.schedule.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

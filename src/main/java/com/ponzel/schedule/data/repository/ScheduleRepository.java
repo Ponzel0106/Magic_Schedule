@@ -1,4 +1,4 @@
-package com.ponzel.schedule.data;
+package com.ponzel.schedule.data.repository;
 
 import com.ponzel.schedule.Schedule;
 import com.ponzel.schedule.User;
@@ -10,6 +10,4 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
     Iterable<Schedule> findAllByUser(User user);
     Iterable<Schedule> findAllByMonth(String month);
     Schedule findByUserAndMonth(User user, String month);
-
-
 }
