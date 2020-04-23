@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.Month;
 
+/**
+ * Implementation service`s methods to work with table "schedule" in DB "schedule"
+ */
 @Service
 public class ScheduleServiceImp implements ScheduleService {
 

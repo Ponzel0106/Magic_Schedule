@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Describe entity User
+ */
 @Entity
 @Data
 @Table(name = "usr")

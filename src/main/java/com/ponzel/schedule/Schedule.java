@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Description entity Schedule
+ */
 @Data
 @Entity
 public class Schedule {

@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Random;
 
+/**
+ * Description entity Shift
+ */
 @Data
 @Entity
 public class Shift {
@@ -28,6 +31,11 @@ public class Shift {
         DAY_OFF
     }
 
+    /**
+     * Generation random type of shift
+     *
+     * @return random type of shift
+     */
     public static TypeOfShift generateTypeOfShift(){
         Random random = new Random();
         int randomInt = random.nextInt(100)+1;

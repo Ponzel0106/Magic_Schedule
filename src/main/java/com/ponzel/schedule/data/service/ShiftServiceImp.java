@@ -5,6 +5,9 @@ import com.ponzel.schedule.Shift;
 import com.ponzel.schedule.data.repository.ShiftRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation service`s methods to work with table "shift" in DB "schedule"
+ */
 @Service
 public class ShiftServiceImp implements ShiftService {
 
