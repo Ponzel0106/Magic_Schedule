@@ -34,6 +34,13 @@ public class ShiftServiceImp implements ShiftService {
     }
 
     @Override
+    public Shift update(Shift shift, Shift.TypeOfShift typeOfShift) {
+        shift.setType(typeOfShift);
+        shiftRepo.save(shift);
+        return shift;
+    }
+
+    @Override
     public Shift getShift(long id) {
         return shiftRepo.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("No shift with id:"+id));

@@ -95,7 +95,7 @@ public class ScheduleController {
    @PostMapping("/shift/update/{id}")
     public String updateShift(@PathVariable("id") long id, String type, Model model){
         Shift shift = shiftService.getShift(id);
-        shiftService.update(shift);
+        shiftService.update(shift, Shift.TypeOfShift.valueOf(type));
         Schedule schedule = shift.getSchedule();
         model.addAttribute("shifts", shiftService.getShifts(schedule));
         model.addAttribute("month", schedule.getMonth());
