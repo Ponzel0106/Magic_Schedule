@@ -21,7 +21,7 @@ public class Shift {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    public static enum TypeOfShift{
+    public enum TypeOfShift{
         SUPER_EARLY,
         EARLY,
         LATE,

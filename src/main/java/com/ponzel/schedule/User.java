@@ -38,7 +38,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Schedule> schedules;
 
-    public static enum RoleOfUser{
+    public enum RoleOfUser{
         ROLE_USER,
         ROLE_ADMIN
     }
@@ -56,8 +56,7 @@ public class User implements UserDetails {
 
     }
     public boolean isAdmin(){
-        if(role == RoleOfUser.ROLE_ADMIN) return true;
-        return false;
+        return role == RoleOfUser.ROLE_ADMIN;
     }
 
     public String getFirstAndLastName(){
