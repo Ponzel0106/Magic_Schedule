@@ -62,6 +62,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="/wishes">Wishes </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="/users">Users </a>
                     </li>
                 </ul>
@@ -87,7 +91,7 @@
                                 <form method="POST" th:action="@{/schedule/delete}">
                                     <td class="column1">
                                         <select class="custom-select" name="username" id="username">
-                                            <option th:each="user : ${users}" th:text="${user.getFirstAndLastName()}" th:value="${user.username}"></option>
+                                            <option th:each="user : ${users}" th:text="${user}" th:value="${user.username}"></option>
                                         </select>
                                     </td>
                                     <td class="column2">

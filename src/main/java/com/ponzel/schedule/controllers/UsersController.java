@@ -1,11 +1,6 @@
 package com.ponzel.schedule.controllers;
 
-import com.ponzel.schedule.Schedule;
-import com.ponzel.schedule.Shift;
 import com.ponzel.schedule.User;
-import com.ponzel.schedule.data.repository.ScheduleRepository;
-import com.ponzel.schedule.data.repository.ShiftRepository;
-import com.ponzel.schedule.data.repository.UserRepository;
 import com.ponzel.schedule.data.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

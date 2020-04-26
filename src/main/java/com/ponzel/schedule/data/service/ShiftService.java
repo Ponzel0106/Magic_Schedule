@@ -4,7 +4,7 @@ import com.ponzel.schedule.Schedule;
 import com.ponzel.schedule.Shift;
 
 public interface ShiftService {
-    void create(Schedule schedule, int day);
+    void create(Schedule schedule, int day, Shift.TypeOfShift type);
     Shift update(Shift shift);
     Shift update(Shift shift, Shift.TypeOfShift typeOfShift);
     Shift getShift(long id);

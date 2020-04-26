@@ -3,6 +3,8 @@ package com.ponzel.schedule;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Random;
 
 /**
@@ -14,6 +16,9 @@ public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Min(value = 1)
+    @Max(value = 31)
     private int day;
 
     @Enumerated(EnumType.STRING)
@@ -44,7 +49,5 @@ public class Shift {
         if(randomInt <= 80) return TypeOfShift.LATE;
         return TypeOfShift.DAY_OFF;
     }
-
-
 
 }

@@ -18,11 +18,11 @@ public class ShiftServiceImp implements ShiftService {
     }
 
     @Override
-    public void create(Schedule schedule, int day) {
+    public void create(Schedule schedule, int day, Shift.TypeOfShift type) {
         Shift shift = new Shift();
         shift.setSchedule(schedule);
         shift.setDay(day);
-        shift.setType(Shift.generateTypeOfShift());
+        shift.setType(type);
         shiftRepo.save(shift);
     }
 

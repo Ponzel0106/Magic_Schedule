@@ -41,6 +41,10 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Schedule> schedules;
 
+    @OneToMany(mappedBy = "user")
+    private List<Wish> wishes;
+
+
     public enum RoleOfUser{
         ROLE_USER,
         ROLE_ADMIN
@@ -62,7 +66,8 @@ public class User implements UserDetails {
         return role == RoleOfUser.ROLE_ADMIN;
     }
 
-    public String getFirstAndLastName(){
+    @Override
+    public String toString(){
         return firstName + " " + lastName;
     }
 

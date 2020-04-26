@@ -81,7 +81,7 @@ public class ScheduleController {
     public String showScheduleListForUser(String username, String month, Model model){
         User user = userService.getUser(username);
         Schedule schedule = scheduleService.getSchedule(user,month);
-        model.addAttribute("name", user.getFirstAndLastName());
+        model.addAttribute("name", user.toString());
         model.addAttribute("month", month);
         model.addAttribute("shifts", shiftService.getShifts(schedule));
         return "shiftsInScheduleForAdmin";
@@ -99,7 +99,7 @@ public class ScheduleController {
         Schedule schedule = shift.getSchedule();
         model.addAttribute("shifts", shiftService.getShifts(schedule));
         model.addAttribute("month", schedule.getMonth());
-        model.addAttribute("name", schedule.getUser().getFirstAndLastName());
+        model.addAttribute("name", schedule.getUser().toString());
         return "shiftsInScheduleForAdmin";
     }
 
